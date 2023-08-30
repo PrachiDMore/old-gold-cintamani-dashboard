@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import { AiOutlineEye } from 'react-icons/ai'
 import ShowOrders from '../components/ShowOrders'
+import { UseOrderContext } from '../context/Orders'
+import { UseCustomerContext } from '../context/Customer'
 
 const Orders = () => {
-	const [showOrder, setShowOrder] = useState(false)
+	const [showOrder, setShowOrder] = useState({ show: false, update: false, data: undefined })
+	const { orders } = UseOrderContext()
+	const { customers } = UseCustomerContext()
 
 	return (
 		<div className='bg-lightOrange w-screen h-screen flex '>
@@ -29,35 +33,30 @@ const Orders = () => {
 							</thead>
 
 							<tbody className='text-sm'>
-								<tr className="border-b border-brown">
-									<th className="px-6 py-4 ">1</th>
-									<td className="px-6 py-4">Jhon Doe</td>
-									<td className="px-6 py-4">Ring</td>
-									<td className="px-6 py-4">100gm</td>
-									<td className="px-6 py-4">23</td>
-									<td className="px-6 py-4">20000</td>
-									<td className="px-6 py-4">
-										<AiOutlineEye onClick={() => { setShowOrder(true) }} className='text-brown text-lg font-bold' />
-									</td>
-								</tr>
-								<tr className="">
-									<th className="px-6 py-4 ">1</th>
-									<td className="px-6 py-4">Jhon Doe</td>
-									<td className="px-6 py-4">Ring</td>
-									<td className="px-6 py-4">100gm</td>
-									<td className="px-6 py-4">23</td>
-									<td className="px-6 py-4">20000</td>
-									<td className="px-6 py-4">
-										<AiOutlineEye onClick={() => { setShowOrder(true) }} className='text-brown text-lg font-bold' />
-									</td>
-								</tr>
-
+								{
+									orders?.map((order, index) => {
+										let customer = customers?.filter((data) => {
+											return order?.user_id?.id === data?.id
+										})
+										return <tr className="border-b border-brown">
+											<th className="px-6 py-4 ">{index + 1}</th>
+											<td className="px-6 py-4">{customer[0]?.display_name}</td>
+											<td className="px-6 py-4">{order?.item_type}</td>
+											<td className="px-6 py-4">{order?.gold_weight}gm</td>
+											<td className="px-6 py-4">{order?.gold_carat}</td>
+											<td className="px-6 py-4">{order?.current_gold_rate}</td>
+											<td className="px-6 py-4">
+												<AiOutlineEye onClick={() => { setShowOrder({ show: true, update: true, data: {...order, customer: customer[0]} }) }} className='cursor-pointer text-brown text-lg font-bold' />
+											</td>
+										</tr>
+									})
+								}
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
-			<ShowOrders showOrder={showOrder} setShowOrder={setShowOrder}/>
+			<ShowOrders showOrder={showOrder} setShowOrder={setShowOrder} />
 		</div>
 	)
 }

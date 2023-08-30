@@ -25,18 +25,18 @@ const ShowOrders = ({ showOrder, setShowOrder }) => {
                 <img className='h-20 w-20 rounded-full' src="/assets/ring.jpg" alt="" />
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
-                <Input label={"Name"} type={"text"} value={"Jhon Doe"} />
-                <Input label={"Type"} type={"text"} value={"Ring"} />
+                <Input label={"Name"} type={"text"} value={"Jhon"} placeholder={"Enter your name"}/>
+                <Input label={"Type"} type={"text"} value={"Ring"} placeholder={"Enter the type"}/>
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
-                <Input label={"Carat"} type={"text"} value={"23"} />
-                <Input label={"Weight in gms"} type={"text"} value={"100"} />
+                <Input label={"Carat"} type={"text"} value={"23"} placeholder={"Enter carat of gold"}/>
+                <Input label={"Weight in gms"} type={"text"} value={"100"} placeholder={"Enter weight in gms"}/>
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
-                <Input label={"Rate per gm"} type={"text"} value={"10000"} />
-                <Input label={"Calculated Amount"} type={"text"} value={"100000"} />
+                <Input label={"Rate per gm"} type={"text"} value={"10000"} placeholder={"Enter rate per gm"}/>
+                <Input label={"Calculated Amount"} value={"100000"} type={"text"} placeholder={"Calculated amount"}/>
               </div>
-              <Input textarea={true} label={"Address"} value={"Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678"}/>
+              <Input textarea={true} label={"Address"} value={"Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678"} placeholder={"Enter Address"}/>
             </div>
             <div className="flex items-center justify-center pb-6  rounded-b ">
               <button className='px-5 py-2 bg-brown/70 hover:bg-brown rounded-lg font-semibold duration-300'>Update Status</button>

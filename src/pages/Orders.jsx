@@ -40,8 +40,8 @@ const Orders = () => {
 										})
 										return <tr className="border-b border-brown">
 											<th className="px-6 py-4 ">{index + 1}</th>
-											<td className="px-6 py-4">{customer[0]?.display_name}</td>
-											<td className="px-6 py-4">{order?.item_type}</td>
+											<td className="px-6 py-4">{order?.name}</td>
+											<td className="px-6 py-4">{order?.item_type === "Other" ? order?.item : order?.item_type}</td>
 											<td className="px-6 py-4">{order?.gold_weight}gm</td>
 											<td className="px-6 py-4">{order?.gold_carat}</td>
 											<td className="px-6 py-4">{order?.current_gold_rate}</td>

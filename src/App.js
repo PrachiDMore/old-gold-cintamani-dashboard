@@ -6,22 +6,29 @@ import Customers from './pages/Customers';
 import Price from './pages/Price';
 import { CustomerContextProvider } from './context/Customer';
 import { OrderContextProvider } from './context/Orders';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import { AuthContextProvider } from './context/Auth';
+import Login from './pages/Login';
 
 function App() {
   return (
     <>
-      <CustomerContextProvider>
-        <OrderContextProvider>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/orders" element={<Orders />} />
-              <Route path="/customers" element={<Customers />} />
-              <Route path="/price" element={<Price />} />
-            </Routes>
-          </Router>
-        </OrderContextProvider>
-      </CustomerContextProvider>
+      <Router>
+        <AuthContextProvider>
+          <CustomerContextProvider>
+            <OrderContextProvider>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/customers" element={<Customers />} />
+                <Route path="/price" element={<Price />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              </Routes>
+            </OrderContextProvider>
+          </CustomerContextProvider>
+        </AuthContextProvider>
+      </Router>
     </>
   );
 }

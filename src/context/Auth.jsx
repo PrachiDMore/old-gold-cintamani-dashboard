@@ -7,13 +7,14 @@ import { useNavigate } from "react-router";
 const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-	const [user, setUser] = useState()
+	const [user, setUser] = useState(undefined)
 	const [userData, setUserData] = useState()
 	const navigate = useNavigate()
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				const uid = user.uid;
+				setUser(user)
 				const unsub = onSnapshot(doc(db, "admin", uid), (doc) => {
 					setUserData(doc.data());
 				});
@@ -21,7 +22,7 @@ const AuthContextProvider = ({ children }) => {
 					unsub()
 				}
 			} else {
-				setUser()
+				setUser(undefined)
 				setUserData()
 				navigate("/login")
 			}

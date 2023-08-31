@@ -4,6 +4,8 @@ import { AiOutlineEye } from 'react-icons/ai'
 import ShowOrders from '../components/ShowOrders'
 import { UseOrderContext } from '../context/Orders'
 import { UseCustomerContext } from '../context/Customer'
+import addNotification from 'react-push-notification'
+import moment from 'moment/moment'
 
 const Orders = () => {
 	const [showOrder, setShowOrder] = useState({ show: false, update: false, data: undefined })
@@ -14,9 +16,9 @@ const Orders = () => {
 		<div className='bg-lightOrange w-screen h-screen flex '>
 			<Sidebar />
 			<div className='border-b h-20 w-4/5 Quicksand topbarShadow'>
-				<div className='h-20 w-full p-8 flex items-center text-3xl font-bold text-brown'>
+				<h1 className='h-20 w-full p-8 flex items-center text-3xl font-bold text-brown'>
 					Orders
-				</div>
+				</h1>
 				<div className='p-8 '>
 					<div className="w-full overflow-hidden rounded-lg">
 						<table className="w-full text-left bg-linear/50 ">
@@ -46,7 +48,7 @@ const Orders = () => {
 											<td className="px-6 py-4">{order?.gold_carat}</td>
 											<td className="px-6 py-4">{order?.current_gold_rate}</td>
 											<td className="px-6 py-4">
-												<AiOutlineEye onClick={() => { setShowOrder({ show: true, update: true, data: {...order, customer: customer[0]} }) }} className='cursor-pointer text-brown text-lg font-bold' />
+												<AiOutlineEye onClick={() => { setShowOrder({ show: true, update: true, data: { ...order, customer: customer[0] } }) }} className='cursor-pointer text-brown text-lg font-bold' />
 											</td>
 										</tr>
 									})

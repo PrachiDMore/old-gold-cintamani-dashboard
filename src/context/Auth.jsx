@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../configuration/firebase_config.jsx";
 import { doc, onSnapshot } from "@firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
 
 const AuthContext = createContext();
@@ -16,7 +16,16 @@ const AuthContextProvider = ({ children }) => {
 				const uid = user.uid;
 				setUser(user)
 				const unsub = onSnapshot(doc(db, "admin", uid), (doc) => {
-					setUserData(doc.data());
+					const data = { ...doc.data(), id: doc.id };
+					if (data.role === "admin") {
+						setUserData(doc.data());
+					} else {
+						signOut(auth).then(() => {
+							alert("Logged Out")
+						}).catch((error) => {
+							// An error happened.
+						});
+					}
 				});
 				return () => {
 					unsub()

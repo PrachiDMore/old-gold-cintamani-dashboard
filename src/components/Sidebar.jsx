@@ -22,14 +22,15 @@ const Sidebar = () => {
       title: "Price"
     },
   ]
+  
   const logout = () => {
     signOut(auth).then(() => {
       alert("Logged Out")
     }).catch((error) => {
       // An error happened.
     });
-
   }
+
   const location = useLocation();
   return (
     <>

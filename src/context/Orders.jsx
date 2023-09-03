@@ -13,18 +13,20 @@ const OrderContextProvider = ({ children }) => {
 		if (user) {
 			const q = query(collection(db, "orders"), orderBy("timestamp", "desc"));
 			const unsubscribe = onSnapshot(q, (querySnapshot) => {
-				let order = querySnapshot?.docChanges()[0]?.doc.data()
-				addNotification({
-					"title": "New Order",
-					native: true,
-					subtitle: `New order placed by ${order?.name}`,
-					icon: order?.ornament_image,
-					message: `New order placed by ${order?.name}`,
-					duration: 30000
-				})
+				if (querySnapshot.docChanges().length > 0) {
+					let order = querySnapshot?.docChanges()[0]?.doc.data()
+					console.log(querySnapshot)
+					addNotification({
+						"title": "New Order",
+						native: true,
+						subtitle: `New order placed by ${order?.name}`,
+						icon: order?.ornament_image,
+						message: `New order placed by ${order?.name}`,
+						duration: 30000
+					})
+				}
 				const orders = [];
 				querySnapshot?.forEach((doc) => {
-					console.log(doc.id)
 					orders.push({ ...doc.data(), id: doc.id });
 				});
 				setOrders(orders)

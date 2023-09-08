@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../configuration/firebase_config.jsx";
 import { doc, onSnapshot } from "@firebase/firestore";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 const AuthContext = createContext();
 
@@ -10,6 +10,7 @@ const AuthContextProvider = ({ children }) => {
 	const [user, setUser] = useState(undefined)
 	const [userData, setUserData] = useState()
 	const navigate = useNavigate()
+	const location = useLocation()
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
@@ -33,7 +34,9 @@ const AuthContextProvider = ({ children }) => {
 			} else {
 				setUser(undefined)
 				setUserData()
-				navigate("/login")
+				if (location.pathname !== "/privacy-policy") {
+					navigate("/login")
+				}
 			}
 		});
 	}, []);

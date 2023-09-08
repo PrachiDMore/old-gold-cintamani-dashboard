@@ -13,6 +13,9 @@ function App() {
   return (
     <>
       <Router>
+        <Routes>
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        </Routes>
         <AuthContextProvider>
           <CustomerContextProvider>
             <OrderContextProvider>
@@ -22,7 +25,6 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/price" element={<Price />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               </Routes>
             </OrderContextProvider>
           </CustomerContextProvider>

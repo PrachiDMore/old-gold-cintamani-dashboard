@@ -35,7 +35,7 @@ const Orders = () => {
 							}))
 						}} readOnly={false} className="px-5" />
 					</div>
-					<div className="w-full overflow-hidden rounded-lg">
+					<div className="not-sidebar-height w-full overflow-scroll rounded-lg">
 						<table className="not-sidebar-height w-full text-left bg-linear/50 ">
 							<thead className='sticky top-0 bg-linear-table overflow-hidden border-b border-brown'>
 								<tr className='rounded-t-lg'>

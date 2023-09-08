@@ -10,7 +10,7 @@ const Sidebar = () => {
     //   title: "Home"
     // },
     {
-      link: "/orders",
+      link: "/",
       title: "Orders"
     },
     {

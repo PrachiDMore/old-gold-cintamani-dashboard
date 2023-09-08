@@ -17,9 +17,9 @@ function App() {
           <CustomerContextProvider>
             <OrderContextProvider>
               <Routes>
+                <Route path="/" element={<Orders />} />
                 {/* <Route path="/" element={<Home />} /> */}
                 <Route path="/login" element={<Login />} />
-                <Route path="/orders" element={<Orders />} />
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/price" element={<Price />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />

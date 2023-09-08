@@ -9,6 +9,7 @@ module.exports = {
         "lightOrange": "#FFF0E6",
         "brown": "#C19578",
         "linear": "#FFDBC48C",
+        "linear-table": "#ffdbc4",
       }
     },
   },

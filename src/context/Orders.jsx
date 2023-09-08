@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
 import { db } from "../configuration/firebase_config";
 import { UseAuthContext } from "./Auth";
 import addNotification from "react-push-notification";
@@ -15,7 +15,6 @@ const OrderContextProvider = ({ children }) => {
 			const unsubscribe = onSnapshot(q, (querySnapshot) => {
 				if (querySnapshot.docChanges().length > 0) {
 					let order = querySnapshot?.docChanges()[0]?.doc.data()
-					console.log(querySnapshot)
 					addNotification({
 						"title": "New Order",
 						native: true,

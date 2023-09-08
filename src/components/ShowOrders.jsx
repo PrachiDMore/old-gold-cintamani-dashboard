@@ -1,8 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import Input from './Input'
 import moment from 'moment'
+import { db } from '../configuration/firebase_config'
+import { doc, updateDoc } from 'firebase/firestore'
 
 const ShowOrders = ({ showOrder, setShowOrder }) => {
+  const [status, setStatus] = useState("");
+  useEffect(() => {
+    setStatus(showOrder?.data?.status)
+  }, [showOrder]);
+  const updateStatus = async () => {
+    if (showOrder?.data?.id) {
+      const documentRef = doc(db, "orders", showOrder?.data?.id);
+      await updateDoc(documentRef, {
+        status: status
+      })
+      .then(() => {
+        alert("Order status updated")
+      })
+      .catch((err) => {
+        alert(err.message)
+      })
+    }
+  }
   return (
     <>
       <div id="defaultModal" tabindex="-1" aria-hidden="true" className={showOrder?.show ? "Quicksand flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-100 duration-500" : "Quicksand -translate-y-[50px] flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-0 pointer-events-none duration-500"}>
@@ -38,14 +58,22 @@ const ShowOrders = ({ showOrder, setShowOrder }) => {
                 <Input label={"Calculated Amount"} value={showOrder?.data?.current_gold_rate * showOrder?.data?.gold_weight} type={"text"} placeholder={"Calculated amount"} />
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
-                {/* {showOrder?.data?.pickup.seconds} */}
                 <Input label={"Pickup Date"} type={"text"} value={moment(moment.unix(showOrder?.data?.pickup?.seconds)).format("DD-MM-YYYY hh:mm A")} placeholder={"Date"} />
-                <Input label={"Calculated Amount"} value={showOrder?.data?.current_gold_rate * showOrder?.data?.gold_weight} type={"text"} placeholder={"Calculated amount"} />
+                <Input label={"Order Placed At"} value={moment(moment.unix(showOrder?.data?.timestamp / 1000)).format("DD-MM-YYYY hh:mm A")} type={"text"} placeholder={"Date"} />
               </div>
               <Input textarea={true} label={"Address"} value={`${showOrder?.data?.street_line} ${showOrder?.data?.locality} ${showOrder?.data?.pincode}`} placeholder={"Enter Address"} />
+              <div className='mt-4'>
+                <label className='font-semibold' htmlFor="status">{"Status"}:</label>
+                <select id="status" onChange={(e) => (setStatus(e.target.value))} value={status} className='w-full read-only:cursor-pointer font-medium px-4 py-3 mt-1 outline-none bg-linear rounded-lg '>
+                  <option value="Processing">Processing</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Out-for-Pickup">Out-for-Pickup</option>
+                  <option value="Being Checked">Being Checked</option>
+                </select>
+              </div>
             </div>
             <div className="flex items-center justify-center pb-6  rounded-b ">
-              <button className='px-5 py-2 bg-brown/70 hover:bg-brown rounded-lg font-semibold duration-300'>Update Status</button>
+              <button onClick={updateStatus} className='px-5 py-2 bg-brown/70 hover:bg-brown rounded-lg font-semibold duration-300'>Update Status</button>
             </div>
           </div>
         </div>

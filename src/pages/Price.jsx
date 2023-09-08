@@ -15,12 +15,15 @@ const Price = () => {
 	useEffect(() => {
 		if (user) {
 			const unsub = onSnapshot(doc(db, "price", "price"), (doc) => {
-				const data = { ...doc.data(), id: doc.id };
+				// const data = { ...doc.data(), id: doc.id };
 				setcarat_18(doc.data().carat_18_price);
 				setcarat_20(doc.data().carat_20_price);
 				setcarat_22(doc.data().carat_22_price);
 				setcarat_24(doc.data().carat_24_price);
 			});
+			return () => {
+				unsub()
+			}
 		}
 	}, [user]);
 

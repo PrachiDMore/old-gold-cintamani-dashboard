@@ -15,3 +15,11 @@
 ::-webkit-scrollbar{
   width: 0;
 }
+
+.container-height{
+  height: calc(100vh - 80px);
+}
+
+.not-sidebar-height{
+  height: calc(100% - 56px);
+}

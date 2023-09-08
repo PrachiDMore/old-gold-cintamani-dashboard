@@ -5,10 +5,10 @@ import { auth } from '../configuration/firebase_config';
 
 const Sidebar = () => {
   const routes = [
-    {
-      link: "/",
-      title: "Home"
-    },
+    // {
+    //   link: "/",
+    //   title: "Home"
+    // },
     {
       link: "/orders",
       title: "Orders"

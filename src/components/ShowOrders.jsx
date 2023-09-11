@@ -70,9 +70,10 @@ const ShowOrders = ({ showOrder, setShowOrder }) => {
                 <label className='font-semibold' htmlFor="status">{"Status"}:</label>
                 <select id="status" onChange={(e) => (setStatus(e.target.value))} value={status} className='w-full read-only:cursor-pointer font-medium px-4 py-3 mt-1 outline-none bg-linear rounded-lg '>
                   <option value="Processing">Processing</option>
-                  <option value="Completed">Completed</option>
                   <option value="Out-for-Pickup">Out-for-Pickup</option>
                   <option value="Being Checked">Being Checked</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
                 </select>
               </div>
               <Input textarea={true} label={"Address"} value={`${showOrder?.data?.street_line} ${showOrder?.data?.locality} ${showOrder?.data?.pincode}`} placeholder={"Enter Address"} />

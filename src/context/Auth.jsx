@@ -18,7 +18,7 @@ const AuthContextProvider = ({ children }) => {
 				setUser(user)
 				const unsub = onSnapshot(doc(db, "admin", uid), (doc) => {
 					const data = { ...doc.data(), id: doc.id };
-					if (data.role === "admin") {
+					if (data?.role === "admin") {
 						setUserData(doc.data());
 					} else {
 						signOut(auth).then(() => {
@@ -35,7 +35,7 @@ const AuthContextProvider = ({ children }) => {
 				setUser(undefined)
 				setUserData()
 				if (location.pathname !== "/privacy-policy") {
-					navigate("/login")
+					navigate("/")
 				}
 			}
 		});

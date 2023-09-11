@@ -9,18 +9,19 @@ const ShowOrders = ({ showOrder, setShowOrder }) => {
   useEffect(() => {
     setStatus(showOrder?.data?.status)
   }, [showOrder]);
+
   const updateStatus = async () => {
     if (showOrder?.data?.id) {
       const documentRef = doc(db, "orders", showOrder?.data?.id);
       await updateDoc(documentRef, {
         status: status
       })
-      .then(() => {
-        alert("Order status updated")
-      })
-      .catch((err) => {
-        alert(err.message)
-      })
+        .then(() => {
+          alert("Order status updated")
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
     }
   }
   return (
@@ -46,8 +47,12 @@ const ShowOrders = ({ showOrder, setShowOrder }) => {
                 <img className='h-32 w-32 rounded-lg object-cover' src={showOrder?.data?.ornament_image} alt="" />
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
-                <Input label={"Name"} type={"text"} value={showOrder?.data?.customer?.display_name} placeholder={"Enter your name"} />
-                <Input label={"Type"} type={"text"} value={showOrder?.data?.item_type} placeholder={"Enter the type"} />
+                <Input label={"Name"} type={"text"} value={showOrder?.data?.customer?.display_name} placeholder={"Enter name"} />
+                <Input label={"Mobile Number"} type={"text"} value={showOrder?.data?.customer?.phone_number} placeholder={"Enter mobile number"} />
+              </div>
+              <div className='grid grid-cols-2 gap-x-4'>
+                <Input label={"Type"} type={"text"} value={showOrder?.data?.item_type === "Other" ? `${showOrder?.data?.item} (${showOrder?.data?.item_type})` : `${showOrder?.data?.item_type}`} placeholder={"Enter the type"} />
+                <Input label={"Order Placed At"} value={moment(moment.unix(showOrder?.data?.timestamp / 1000)).format("ddd, MMM Do YYYY, hh:mm A")} type={"text"} placeholder={"Date"} />
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
                 <Input label={"Carat"} type={"text"} value={showOrder?.data?.gold_carat} placeholder={"Enter carat of gold"} />
@@ -58,11 +63,10 @@ const ShowOrders = ({ showOrder, setShowOrder }) => {
                 <Input label={"Calculated Amount"} value={showOrder?.data?.current_gold_rate * showOrder?.data?.gold_weight} type={"text"} placeholder={"Calculated amount"} />
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
-                <Input label={"Pickup Date"} type={"text"} value={moment(moment.unix(showOrder?.data?.pickup?.seconds)).format("DD-MM-YYYY hh:mm A")} placeholder={"Date"} />
-                <Input label={"Order Placed At"} value={moment(moment.unix(showOrder?.data?.timestamp / 1000)).format("DD-MM-YYYY hh:mm A")} type={"text"} placeholder={"Date"} />
+                <Input label={"Pickup Date"} type={"text"} value={moment(moment.unix(showOrder?.data?.pickup_date)).format("ddd, MMM Do YYYY")} placeholder={"Date"} />
+                <Input label={"Pickup Time"} type={"text"} value={showOrder?.data?.pickup_time} placeholder={"Time"} />
               </div>
-              <Input textarea={true} label={"Address"} value={`${showOrder?.data?.street_line} ${showOrder?.data?.locality} ${showOrder?.data?.pincode}`} placeholder={"Enter Address"} />
-              <div className='mt-4'>
+              <div>
                 <label className='font-semibold' htmlFor="status">{"Status"}:</label>
                 <select id="status" onChange={(e) => (setStatus(e.target.value))} value={status} className='w-full read-only:cursor-pointer font-medium px-4 py-3 mt-1 outline-none bg-linear rounded-lg '>
                   <option value="Processing">Processing</option>
@@ -71,6 +75,7 @@ const ShowOrders = ({ showOrder, setShowOrder }) => {
                   <option value="Being Checked">Being Checked</option>
                 </select>
               </div>
+              <Input textarea={true} label={"Address"} value={`${showOrder?.data?.street_line} ${showOrder?.data?.locality} ${showOrder?.data?.pincode}`} placeholder={"Enter Address"} />
             </div>
             <div className="flex items-center justify-center pb-6  rounded-b ">
               <button onClick={updateStatus} className='px-5 py-2 bg-brown/70 hover:bg-brown rounded-lg font-semibold duration-300'>Update Status</button>

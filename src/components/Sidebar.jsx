@@ -37,7 +37,7 @@ const Sidebar = () => {
       <div className='border-r border-brown w-1/5 h-screen p-8 Quicksand sidebarShadow flex flex-col gap-7 '>
         {/* <img src="" alt="" /> */}
         <div>
-          <p className='text-4xl font-bold'>Chintamani</p>
+          <p className='text-4xl font-bold'>Old Gold</p>
         </div>
         <div className='text-lg font-semibold flex flex-col gap-4'>
           {

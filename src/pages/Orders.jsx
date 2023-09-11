@@ -31,7 +31,7 @@ const Orders = () => {
 					<div className='mb-3 h-14'>
 						<Input placeholder={"Search..."} onChange={(e) => {
 							setResults(orders?.filter((order) => {
-								return order?.name?.toLowerCase()?.includes(e.target.value?.toLowerCase()) || order?.gold_carat?.toLowerCase()?.includes(e.target.value?.toLowerCase()) || order?.current_gold_rate === e.target.value || order?.item_type?.toLowerCase()?.includes(e.target.value?.toLowerCase()) || order?.item?.toLowerCase()?.includes(e.target.value?.toLowerCase()) || order?.gold_weight === e.target.value
+								return order?.name?.toLowerCase()?.includes(e.target.value?.toLowerCase()) || order?.gold_carat?.toLowerCase()?.includes(e.target.value?.toLowerCase()) || order?.current_gold_rate === e.target.value || order?.item_type?.toLowerCase()?.includes(e.target.value?.toLowerCase()) || order?.item?.toLowerCase()?.includes(e.target.value?.toLowerCase()) || order?.mobile_number?.toLowerCase()?.includes(e.target.value?.toLowerCase()) || order?.gold_weight === e.target.value
 							}))
 						}} readOnly={false} className="px-5" />
 					</div>

@@ -21,5 +21,6 @@
 }
 
 .not-sidebar-height{
-  height: calc(100% - 56px);
+  height: auto;
+  max-height: calc(100% - 56px);
 }

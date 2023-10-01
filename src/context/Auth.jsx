@@ -35,7 +35,7 @@ const AuthContextProvider = ({ children }) => {
 				setUser(undefined)
 				setUserData()
 				if (location.pathname !== "/privacy-policy") {
-					navigate("/")
+					navigate("/login")
 				}
 			}
 		});

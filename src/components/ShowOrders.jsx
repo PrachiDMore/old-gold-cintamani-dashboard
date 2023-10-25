@@ -48,7 +48,7 @@ const ShowOrders = ({ showOrder, setShowOrder }) => {
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
                 <Input label={"Name"} type={"text"} value={showOrder?.data?.customer?.display_name} placeholder={"Enter name"} />
-                <Input label={"Mobile Number"} type={"text"} value={showOrder?.data?.customer?.phone_number} placeholder={"Enter mobile number"} />
+                <Input label={"Mobile Number"} type={"text"} value={showOrder?.data?.mobile_number} placeholder={"Enter mobile number"} />
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
                 <Input label={"Type"} type={"text"} value={showOrder?.data?.item_type === "Other" ? `${showOrder?.data?.item} (${showOrder?.data?.item_type})` : `${showOrder?.data?.item_type}`} placeholder={"Enter the type"} />

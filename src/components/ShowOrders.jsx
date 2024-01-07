@@ -47,6 +47,10 @@ const ShowOrders = ({ showOrder, setShowOrder }) => {
                 <img className='h-32 w-32 rounded-lg object-cover' src={showOrder?.data?.ornament_image} alt="" />
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
+                <Input label={"Hallmark"} type={"checkbox"} value={showOrder?.data?.hallmark} checked={showOrder?.data?.hallmark} placeholder={"Enter name"} />
+                <Input label={"Confirm Carat"} type={"checkbox"} value={showOrder?.data?.confirm_carat} checked={showOrder?.data?.confirm_carat} placeholder={"Enter mobile number"} />
+              </div>
+              <div className='grid grid-cols-2 gap-x-4'>
                 <Input label={"Name"} type={"text"} value={showOrder?.data?.customer?.display_name} placeholder={"Enter name"} />
                 <Input label={"Mobile Number"} type={"text"} value={showOrder?.data?.mobile_number} placeholder={"Enter mobile number"} />
               </div>

@@ -28,6 +28,7 @@ const OrderContextProvider = ({ children }) => {
 				querySnapshot?.forEach((doc) => {
 					orders.push({ ...doc.data(), id: doc.id });
 				});
+				console.log(orders)
 				setOrders(orders)
 			});
 			return () => {

@@ -33,19 +33,15 @@ const PrivacyPolicy = () => {
 				<p className='px-5'>We use Firebase, a third-party service provided by Google, to store and process data. Please review Google's Privacy Policy <a className='text-brown underline underline-offset-2' href="https://policies.google.com/privacy">https://policies.google.com/privacy</a> to understand how they handle your information.</p>
 			</div>
 			<div>
-				<h2 className='font-bold text-2xl'>5. Children's Privacy</h2>
-				<p className='px-5'>The App is not intended for use by individuals under  the age of  13. We do not knowingly collect personal information from children. If you believe a child has provided us with their information, please contact us at <a className='text-brown underline underline-offset-2' href="mailto:query.chintamanijewellers@gmail.com">query.chintamanijewellers@gmail.com</a>, and we will take appropriate steps to remove the information.</p>
-			</div>
-			<div>
-				<h2 className='font-bold text-2xl'>6. Your Choices</h2>
+				<h2 className='font-bold text-2xl'>5. Your Choices</h2>
 				<p className='px-5'>You can access, update, or delete your personal  information by contacting us at <a className='text-brown underline underline-offset-2' href="mailto:query.chintamanijewellers@gmail.com">query.chintamanijewellers@gmail.com</a>. You can also disable cookies or adjust your device settings to prevent the collection of certain information.</p>
 			</div>
 			<div>
-				<h2 className='font-bold text-2xl'>7. Changes to Privacy Policy</h2>
+				<h2 className='font-bold text-2xl'>6. Changes to Privacy Policy</h2>
 				<p className='px-5'>We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We encourage you to review this Privacy Policy periodically.</p>
 			</div>
 			<div>
-				<h2 className='font-bold text-2xl'>8. Contact Us</h2>
+				<h2 className='font-bold text-2xl'>7. Contact Us</h2>
 				<p className='px-5'>If you have any questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us query <a className='text-brown underline underline-offset-2' href="mailto:chintamanijewellers@gmail.com">chintamanijewellers@gmail.com</a> By using the Chintamani  Old Gold  App, you agree to the terms outlined in this Privacy Policy. If you do not agree with any aspect of this Policy, please do not use the App.</p>
 			</div>
 		</main>

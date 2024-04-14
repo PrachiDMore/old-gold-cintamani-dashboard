@@ -24,3 +24,14 @@
   height: auto;
   max-height: calc(100% - 56px);
 }
+
+.list{
+  height: 4px;
+  width: 4px;
+  display: block;
+  background-color: black !important;
+}
+.container-main p{
+  display: flex;
+  align-items: center;
+}
